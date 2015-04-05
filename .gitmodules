@@ -1,0 +1,12 @@
+[submodule "utils/LuaMinify"]
+	path = utils/LuaMinify
+	url = https://github.com/stravant/LuaMinify.git
+[submodule "deps/lua_cliargs"]
+	path = deps/lua_cliargs
+	url = https://github.com/amireh/lua_cliargs
+[submodule "deps/copas"]
+	path = deps/copas
+	url = https://github.com/keplerproject/copas.git
+[submodule "deps/coxpcall"]
+	path = deps/coxpcall
+	url = https://github.com/keplerproject/coxpcall

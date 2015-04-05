@@ -1,0 +1,12 @@
+# Generic ignores
+.DS_Store
+._*
+.Spotlight-V100
+.Trashes
+.AppleDouble
+.LSOverride
+
+# Project specific ignores
+opc_server
+opc_server.lua
+opc_server_min.lua
