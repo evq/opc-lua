@@ -85,6 +85,12 @@ function set_colors(client, chan)
       print("R: " .. pixels[1][1])
       print("G: " .. pixels[1][2])
       print("B: " .. pixels[1][3])
+      if #pixels >= 2 then
+        print("second pixel")
+        print("R: " .. pixels[2][1])
+        print("G: " .. pixels[2][2])
+        print("B: " .. pixels[2][3])
+      end
     end
 
     if args.backend ~= "console" then

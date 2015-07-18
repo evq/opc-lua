@@ -59,10 +59,12 @@ function Pca9685:set_pixels(pixels)
     self.i2c:transfer(self.DEFAULT_ADDR, {{self.LEDN_OFF_L(j-1), pixel_l}})
   end
   if #pixels == 2 then
-    local pixel_h = math.floor((pixels[2][1]*16) / 256)
-    local pixel_l = math.floor((pixels[2][1]*16) % 256)
-    self.i2c:transfer(self.DEFAULT_ADDR, {{self.LEDN_OFF_H(5), pixel_h}})
-    self.i2c:transfer(self.DEFAULT_ADDR, {{self.LEDN_OFF_L(5), pixel_l}})
+    for j=1, 3, 1 do
+      local pixel_h = math.floor((pixels[2][j]*16) / 256)
+      local pixel_l = math.floor((pixels[2][j]*16) % 256)
+      self.i2c:transfer(self.DEFAULT_ADDR, {{self.LEDN_OFF_H(2+j), pixel_h}})
+      self.i2c:transfer(self.DEFAULT_ADDR, {{self.LEDN_OFF_L(2+j), pixel_l}})
+    end
   end
 end
 

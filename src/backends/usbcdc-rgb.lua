@@ -1,21 +1,21 @@
-local P9817_rgbw = {}
+local Usbcdc = {}
 
--- In RGBW mode we are overloading every other pixel to carry W data
-function P9817_rgbw:init(device)
+function Usbcdc:init(device)
   self.vstruct = require("vstruct")
   if device == "" then
     device = "/dev/ttyACM0"
   end
+  os.execute('stty -F ' .. device .. ' 115200 raw -iexten -echo -echoe -echok -echoctl')
   self.tty = io.open(device, "w")
   self.tty:setvbuf("no"); 
 
-  print("P9817_rgbw backend initialized.")
+  print("Usbcdc backend initialized.")
 end
 
-function P9817_rgbw:set_pixels(pixels) 
+function Usbcdc:set_pixels(pixels) 
   local buf = self.vstruct.write(#pixels .. "*{ 3*u1 }", nil, pixels)
   self.tty:write(buf)
   self.tty:flush()
 end
 
-return P9817_rgbw
+return Usbcdc
