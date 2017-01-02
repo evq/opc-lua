@@ -1,0 +1,13 @@
+#!/bin/sh /etc/rc.common
+
+START=90
+
+USE_PROCD=1
+PROG=/bin/opc_server
+BACKEND=usbcdc-tube
+
+start_service() {
+	procd_open_instance
+	procd_set_param command "$PROG" -b "$BACKEND"
+	procd_close_instance
+}
