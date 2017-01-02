@@ -3,16 +3,16 @@ local Lwdev = {}
 function Lwdev:init(device)
   self.littlewire = require("littlewire")
 
-  local littlewire_devices = littlewire.search()
+  local littlewire_devices = self.littlewire.search()
 
   print("Found ", #littlewire_devices, " littlewire devices.\n")
 
-  self.lw_dev = littlewire.connect()
+  self.lw_dev = self.littlewire.connect()
 
   print("Connected to first device.")
-  print("FW Version: ", littlewire.readFirmwareVersion(self.lw_dev), "\n")
+  print("FW Version: ", self.littlewire.readFirmwareVersion(self.lw_dev), "\n")
 
-  littlewire.softPWM_state(self.lw_dev, 1)
+  self.littlewire.quadPWM_state(self.lw_dev, 1)
 
   print("Littlewire rgbw backend initialized.")
 end
@@ -25,7 +25,7 @@ function Lwdev:set_pixels(pixels)
   else
     w = 0
   end
-  littlewire.softPWM_write(self.lw_dev, pixels[1][1], pixels[1][2], pixels[1][3], w)
+  self.littlewire.quadPWM_write(self.lw_dev, pixels[1][1], pixels[1][2], pixels[1][3], w)
 end
 
 return Lwdev
